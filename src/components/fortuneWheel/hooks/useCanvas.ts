@@ -24,7 +24,7 @@ export function useCanvas(props: PropsType) {
   });
 
   // 绘制canvas
-  function drawCanvas(): void {
+  async function drawCanvas() {
     const canvasEl = wheelEl.value as HTMLCanvasElement;
     if (canvasEl.getContext) {
       const {
@@ -38,13 +38,15 @@ export function useCanvas(props: PropsType) {
       // 根据奖品个数计算圆周角度
       const arc = Math.PI / (props.prizes.length / 2);
       const ctx = canvasEl.getContext("2d") as CanvasRenderingContext2D;
+      // font 属性设置或返回画布上的文本内容的当前字体属性
+      await document.fonts.load(`${fontSize}px ${fontFamily}`);
+      ctx.font = `${fontSize}px ${fontFamily}`;
       // 在给定矩形内清空一个矩形
       ctx.clearRect(0, 0, radius * 2, radius * 2);
       // strokeStyle 属性设置或返回用于笔触的颜色、渐变或模式
       ctx.strokeStyle = borderColor;
       ctx.lineWidth = borderWidth * 2;
       // font 属性设置或返回画布上的文本内容的当前字体属性
-      ctx.font = `${fontSize}px ${fontFamily}`;
       props.prizes.forEach((row, i) => {
         const angle = i * arc - Math.PI / 2;
         ctx.fillStyle = row.bgColor;
