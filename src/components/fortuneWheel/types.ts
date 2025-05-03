@@ -26,7 +26,11 @@ interface PrizeConfigWeightCanvas extends PrizeConfigBaseCanvas {
   weight: number;
 }
 
-export type PrizeConfig = PrizeConfigProbability | PrizeConfigWeight | PrizeConfigProbabilityCanvas | PrizeConfigWeightCanvas;
+export type PrizeConfig =
+  | PrizeConfigProbability
+  | PrizeConfigWeight
+  | PrizeConfigProbabilityCanvas
+  | PrizeConfigWeightCanvas;
 
 export interface CanvasConfig {
   radius?: number;
@@ -39,6 +43,7 @@ export interface CanvasConfig {
   btnText?: string;
   btnWidth?: number;
   fontSize?: number;
+  fontFamily?: string;
 }
 
 export interface PropsType {
